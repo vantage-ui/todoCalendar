@@ -1,32 +1,35 @@
     <div class="header">
-      <h1>To Do List</h1>
+      <h1>To-Do App <i class="glyphicon glyphicon-ok appIcon"></i></h1>
+      <!-- user input section -->
       <form name="todoForm" class="rowFlex" novalidate ng-submit="todoForm.$valid && todoAdd()">
-        <div class="columnFlex todoInput" style="flex-grow: 3; flex-basis: 0;">
+        <div class="columnFlex todoInput todoInputName">
           <input type="text" class="taskInput" required name="todo" ng-model="todoInput" placeholder="Enter task">
-          <div style="color:#3071a9" ng-show="todoForm.todo.$invalid">
+          <div class="formRequired" ng-show="todoForm.todo.$invalid">
             <span ng-show="todoForm.todo.$error.required">* Required</span>
           </div>
+          <div ng-show="todoForm.dueDateInput.$valid" class="requiredPlaceholder"></div>
         </div>
-        <div class="columnFlex todoInput" style="flex-grow: 2; flex-basis: 0;">
+        <div class="columnFlex todoInput todoInputDate">
           <div>
-            <input type="text" class="dateInput" required name="dueDateInput" placeholder="Enter due date" datepicker-popup="yyyy-MM-dd" ng-model="dueDateInput" is-open="isOpened" show-weeks="false" />
+            <input type="text" class="dateInput" required name="dueDateInput" placeholder="Enter due date" show-button-bar="false" datepicker-popup="yyyy-MM-dd" ng-model="dueDateInput" is-open="isOpened" show-weeks="false" />
             <span>
               <button type="button" class="btn btn-default todoDateButton" ng-click="open($event)">
                 <i class="glyphicon glyphicon-calendar"></i></button>
             </span>
           </div>
-          <div style="color:#3071a9" ng-show="todoForm.dueDateInput.$invalid">
+          <div class="formRequired" ng-show="todoForm.dueDateInput.$invalid">
             <span ng-show="todoForm.dueDateInput.$error.required">* Required</span>
           </div>
-          <div ng-show="todoForm.dueDateInput.$valid" style="height: 20px;"></div>
+          <div ng-show="todoForm.dueDateInput.$valid" class="requiredPlaceholder"></div>
         </div>
-        <div class="columnFlex" style="flex-grow: 1; flex-basis: 0;">
+        <div class="columnFlex todoInputAdd">
           <input type="submit" class="btn btn-success todoAddButton" value="Add">
         </div>
       </form>
     </div>
 
     <div class="rowFlex todoContent">
+      <!-- to do list section -->
       <div class="columnFlex todoListSection">
         <div>
           <input type="text" class="todoSearch" ng-model="search" placeholder="Search the list">
@@ -47,9 +50,10 @@
             </span>
           </div>
         </div>
-        <p><button class="btn btn-success" ng-show="todoList.length" ng-click="removeAllSelected()">Remove marked</button></p>
+        <p><button class="btn btn-success" ng-show="todoList.length > 1" ng-click="removeAllSelected()">Delete selected</button></p>
       </div>
 
+      <!-- Calendar section -->
       <div class="todoCalendar">
         <div id="calendar" calendar-show todo-list="todoList"></div>
       </div>

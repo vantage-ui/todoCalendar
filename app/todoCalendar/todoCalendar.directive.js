@@ -8,6 +8,7 @@ app.directive('calendarShow', function() {
     },
     link: function(scope, oElement, attrs) {
 
+      // initialize calendar config
       scope.init = function() {
         var date = new Date();
         var d = date.getDate();
@@ -33,6 +34,7 @@ app.directive('calendarShow', function() {
         $('#calendar').fullCalendar('addEventSource', scope.todoList);
       };
 
+      // listen to changes in todo list and render the changes on calendar
       scope.$watch('todoList', function() {
         if (scope.todoList === undefined) return;
         scope.upateCalendar();
