@@ -1,0 +1,56 @@
+    <div class="header">
+      <h1>To Do List</h1>
+      <form name="todoForm" class="rowFlex" novalidate ng-submit="todoForm.$valid && todoAdd()">
+        <div class="columnFlex todoInput" style="flex-grow: 3; flex-basis: 0;">
+          <input type="text" class="taskInput" required name="todo" ng-model="todoInput" placeholder="Enter task">
+          <div style="color:#3071a9" ng-show="todoForm.todo.$invalid">
+            <span ng-show="todoForm.todo.$error.required">* Required</span>
+          </div>
+        </div>
+        <div class="columnFlex todoInput" style="flex-grow: 2; flex-basis: 0;">
+          <div>
+            <input type="text" class="dateInput" required name="dueDateInput" placeholder="Enter due date" datepicker-popup="yyyy-MM-dd" ng-model="dueDateInput" is-open="isOpened" show-weeks="false" />
+            <span>
+              <button type="button" class="btn btn-default todoDateButton" ng-click="open($event)">
+                <i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+          </div>
+          <div style="color:#3071a9" ng-show="todoForm.dueDateInput.$invalid">
+            <span ng-show="todoForm.dueDateInput.$error.required">* Required</span>
+          </div>
+          <div ng-show="todoForm.dueDateInput.$valid" style="height: 20px;"></div>
+        </div>
+        <div class="columnFlex" style="flex-grow: 1; flex-basis: 0;">
+          <input type="submit" class="btn btn-success todoAddButton" value="Add">
+        </div>
+      </form>
+    </div>
+
+    <div class="rowFlex todoContent">
+      <div class="columnFlex todoListSection">
+        <div>
+          <input type="text" class="todoSearch" ng-model="search" placeholder="Search the list">
+        </div>
+        <div ng-show="!todoList.length" class="emptyTodoList">Todo list is empty</div>
+        <div ng-show="todoList.length" class="todoList">
+          <div ng-repeat="item in todoList | filter:search  | orderBy:'-'" class="rowFlex listItem">
+            <input type="checkbox" class="todoCheckbox" ng-model="item.done" ng-change="updateDoneStatus(item)">
+            <input ng-class="[item.editMode ? 'editMode' : 'nonEditMode', item.done ? 'done' : 'notDone', 'todoListEntry']" ng-model="item.title" ng-readonly="!item.editMode">
+            <span class="dueDateEntry" ng-bind="item.start | date:'MMMM dd, yyyy'"></span>
+            <span>
+              <button type="button" class="btn btn-default todoEditButton" ng-disabled="item.done" ng-click="toggleEditMode(item, $event)">
+                <span>{{item.editMode ? 'save' : 'edit'}}</span></button>
+            </span>
+            <span>
+              <button type="button" class="btn btn-default todoDeleteButton" ng-click="removeItem(item)">
+                <i class="glyphicon glyphicon-trash"></i></button>
+            </span>
+          </div>
+        </div>
+        <p><button class="btn btn-success" ng-show="todoList.length" ng-click="removeAllSelected()">Remove marked</button></p>
+      </div>
+
+      <div class="todoCalendar">
+        <div id="calendar" calendar-show todo-list="todoList"></div>
+      </div>
+    </div>

@@ -1,0 +1,174 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+/* flexible responsive layout structure without using float or positioning */
+.rowFlex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+
+.columnFlex {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+/* Style the header */
+.header {
+  background-color: #ffbf00;
+  padding: 20px 40px;
+  color: #3071a9;
+  text-align: center;
+  height: 20em;
+  flex: 0 1 auto;
+}
+
+.header>h1 {
+  margin: 35px;
+}
+
+/* Style the input */
+input {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  padding: 10px;
+  float: left;
+  font-size: 16px;
+}
+
+.taskInput {
+  width: 100%;
+  color: black;
+}
+
+.dateInput {
+  width: 75%;
+  color: black;
+}
+
+.todoInput {
+  margin: 5px;
+}
+
+.todoDateButton {
+  height: 43px;
+}
+
+.todoAddButton {
+  height: 70%;
+}
+
+.todoSearch {
+  border: 1px solid #bfbfbf;
+  margin: 0;
+  width: 100%;
+}
+
+.todoCheckbox {
+  width: 50px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+}
+
+input[type=checkbox] {
+  margin: auto;
+}
+
+.todoEditButton {
+  width: 40px;
+  padding: 6px 0;
+  background: transparent;
+}
+
+.todoDeleteButton {
+  background: transparent;
+}
+
+.dueDateEntry {
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+}
+
+/* Set all odd list items to a different color (zebra-stripes) */
+.listItem:nth-child(odd) {
+  background: #f9f9f9;
+}
+
+/* Darker background-color on hover */
+.listItem:hover {
+  background-color: #bfbfbf;
+}
+
+.todoListSection {
+  flex-grow: 1.5;
+  flex-basis: 0;
+  margin-right: 10px;
+  height: 80%;
+}
+
+.emptyTodoList{
+  height: 100%;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.todoList {
+  height: 100%;
+  overflow: auto;
+}
+
+.todoListEntry {
+  padding: 5px;
+  width: 100%;
+  background: transparent;
+}
+
+.todoCalendar {
+  flex-grow: 2;
+  flex-basis: 0;
+  margin: 0 auto;
+  display: flex;
+  margin-top: 10px;
+}
+
+.todoContent {
+  flex: 1 1 auto;
+}
+
+.nonEditMode {
+  border: 0;
+}
+
+.editMode {
+  color: #3071a9;
+  border: 1px solid #3071a9;
+  ;
+}
+
+.done {
+  text-decoration: line-through;
+}
+
+.notDone {
+  text-decoration: none;
+}
+
+.fc-time{
+  display : none;
+}
